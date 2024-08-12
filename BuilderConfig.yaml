@@ -1,0 +1,20 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: streamlit-app-build
+spec:
+  source:
+    git:
+      uri: git@github.com:emmmahi/generated-data-streamlit-app.git
+    sourceSecret:
+      name: github-repo
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: python:3.10
+  output:
+    to:
+      kind: ImageStreamTag
+      name: streamlit-app:latest
