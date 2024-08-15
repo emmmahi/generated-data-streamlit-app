@@ -1,14 +1,3 @@
-# CEMIS-HYVIS
-----
-
-Tavoitteena on luona synteettistä dataa CEMIS-HYVIS-hankkeeseen liittyvien laskentakaavojen testaamista varten. Hankkeesta lisää [täältä](https://www.cemis.fi/ennakoi-innovoi-mittaa-ja-analysoi-hyvinvointia-elintapojen-muutoksesta-ymparistosta-ja-turvallisista-tuotteista-hyvis/).
-
-Hankkeessa on tarkoitus toteuttaa työkalu **Coach4Health** ammattilaisten käyttöön, jolla voidaan ennustaa asiakkaan suunnittelemien elinatapamuutosten vaikutusta kehonkoostumukseen ja fyysiseen toimintakykyyn. 
-
-![ennuste-kuva](./images/ideakuva_ennusteesta.png)
-
------
-
 # Asenna tarvittava ympäristö sekä riippuvuudet terminaalissa 
 
 Luo virtuaaliympäristö:  

@@ -31,7 +31,7 @@ add_background_color()
 
 st.title("Rivin valinta taulukosta")
 st.write("Valitse haluttu rivi klikkaamalla rivin vasenta laitaa. Voit järjestää taulukkoa uudelleen valistemalla halutun ominaisuuden.")
-
+st.write('Lisäinfo')
 @st.cache_data   #decorator to cache the the dataset loading for better performance
 def get_dataset():
     #data = pd.read_csv('data/07-24-data.csv')
@@ -229,12 +229,15 @@ if selected_row is not None:
 
 
     if etp is not None:
-        fig, axes = plt.subplots(3,3, figsize=(16, 8))
+        fig, axes = plt.subplots(3,3, figsize=(18, 8))
 
         for ax, (title, data_list, x_list) in zip(axes.flat, data_list):
             ax.plot(data_list, linestyle='--')
             ax.set_title(title)
-            ax.set_ylim(min(data_list) -5, max(data_list) +5)
+            if data_list==list_etp:
+                ax.set_ylim(min(data_list) -100, max(data_list) +100)
+            else:
+                ax.set_ylim(min(data_list) -5, max(data_list) +5)
             ax.set_xlim(0, len(data_list)-1)
             if data_list==list_etp:
                 ax.set_xlabel('kuukaudet')
