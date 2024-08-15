@@ -31,7 +31,7 @@ add_background_color()
 
 st.title("Rivin valinta taulukosta")
 st.write("Valitse haluttu rivi klikkaamalla rivin vasenta laitaa. Voit järjestää taulukkoa uudelleen valistemalla halutun ominaisuuden.")
-st.write('Lisäinfo')
+st.write("Testi muutos")
 @st.cache_data   #decorator to cache the the dataset loading for better performance
 def get_dataset():
     #data = pd.read_csv('data/07-24-data.csv')
