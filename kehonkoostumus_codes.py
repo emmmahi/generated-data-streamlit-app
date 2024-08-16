@@ -59,11 +59,11 @@ def kehonkoostumus(row, energiatp=0, lihasvoimaharjoitusmuoto = None):
         
     for i, num in enumerate(viikot):
         #print(i,num)
-        if lihasvoimaharjoitusmuoto=="Lihasmassa sininen":
+        if lihasvoimaharjoitusmuoto=="Medium load":
             uusi_lihasmassa = list_lihasmassa[0]*k.muscle_mass_blue_orig(num)
             list_lihasmassa.append(round(uusi_lihasmassa,1))
             erotus_lihasmassa = (list_lihasmassa[i+1]-list_lihasmassa[i]).round(2)
-        elif lihasvoimaharjoitusmuoto=="Lihasmassa oranssi":
+        elif lihasvoimaharjoitusmuoto=="Low load" or lihasvoimaharjoitusmuoto=="High load":
             uusi_lihasmassa = list_lihasmassa[0]*k.muscle_mass_orange_orig(num)
             list_lihasmassa.append(round(uusi_lihasmassa,1))
             erotus_lihasmassa = (list_lihasmassa[i+1]-list_lihasmassa[i]).round(2)       

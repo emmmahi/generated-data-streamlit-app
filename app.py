@@ -30,8 +30,8 @@ def add_background_color():
 add_background_color()
 
 st.title("Rivin valinta taulukosta")
-st.write("Valitse haluttu rivi klikkaamalla rivin vasenta laitaa. Voit järjestää taulukkoa uudelleen valistemalla halutun ominaisuuden.")
-st.write("Testi lisäys neljännen muutoksen jälkeen")
+st.write("Valitse haluttu rivi klikkaamalla rivin vasenta laitaa.")
+st.write("Voit järjestää taulukkoa uudelleen valitsemalla halutun ominaisuuden.")
 @st.cache_data   #decorator to cache the the dataset loading for better performance
 def get_dataset():
     #data = pd.read_csv('data/07-24-data.csv')
@@ -88,16 +88,24 @@ if person:
 
 
     with col3:
-        st.write("*Tähän jokin muu visuaalinen esitys, mikä tärkeää vielä nostaa esiin valitusta henkilöstä?*")
-        st.bar_chart(selected_row[['Lihasmassa (kg)', 'Rasvaton massa (kg)', 'Rasvamassa (kg)']], y_label='Kilot',
-                     horizontal=True, color="#ffaa00")
+        #st.write("*Tähän jokin muu visuaalinen esitys, mikä tärkeää vielä nostaa esiin valitusta henkilöstä?*")
+        #st.bar_chart(selected_row[['Lihasmassa (kg)', 'Rasvaton massa (kg)', 'Rasvamassa (kg)']], y_label='Kilot',
+        #             horizontal=True, color="#ffaa00")
+        fig, axs = plt.subplots(figsize=(8,4))
+        axs.set_ylim(bottom=6, top=41)
+        axs.axhline(y=selected_row['BMI'], color='g', linestyle='--', label='BMI')
+        axs.axhline(y=selected_row['Rasvaprosentti'], color='r', linestyle='--', label='Rasvaprosentti')
+        axs.legend()  # Jos haluat näyttää legendan
+        st.pyplot(fig)
+
+        
 
 
 st.divider() ################################################################################
 
 st.write("# Valitse energiatasapainon määrä sekä harjoitusmuodot")
 
-colu1, colu2, colu3, colu4 = st.columns(4)
+colu1, colu2, colu3 = st.columns(3)
 with colu1:
     apuviesti_etp='''Kalorimäärää käytetään rasvamassan ja painon muutoksen laskuun 
     (9kcal = 1g rasvaa). Energiataspaino päivitetään neljän viikon välien painon muutoksen takia
@@ -122,37 +130,21 @@ with colu2:
     #option1 = st.selectbox("Kestävyysharjoittelu" ("matalatehoinen", "hiit"))
     option_kestavyys  = st.selectbox(
         "Kestävyysharjoittelun muoto",
-        ("Hiit", "Matala 2", "Matala 3"),
+        ("Hiit", "Matala 2x", "Matala 3x"),
         index=None,
         placeholder="Valitse tästä",
         help=apuviesti_kestavyys
     )
     st.write("Valintasi:", option_kestavyys)
 
-with colu3:
-    st.write("**Valitse lihasMASSAharjoittelumuoto**")
-    apuviesti_lihasmassa = '''
-    Sovitekäyrien kaavat on otettu excel-taulukoista. 
-    Kaavan antama PROSENTTILUKEMA jaetaan 100:lla ja siihen lisätään yksi, 
-    jotta saadaan prosenttimäärä desimaalikertoimeksi alkuperäiselle arvolle.'''
-    option_lihasmassa = st.selectbox(
-        "LihasMASSAharjoittelun muoto",
-        ("Lihasmassa sininen", "Lihasmassa oranssi"),
-        index=None,
-        placeholder="Valitse tästä",
-        help=apuviesti_lihasmassa
-    )
-    st.write("Valintasi:", option_lihasmassa)
 
-with colu4:
-    st.write("**Valitse lihasVOIMAharjoittelumuoto**")
+with colu3:
+    st.write("**Valitse lihasvoimaharjoittelumuoto**")
     apuviesti_voima = '''
-    Sovitekäyrien kaavat on otettu excel-taulukoista. Kaava antaa suoraan prosenttimäärän desimaalilukuna 
-    ja siihen lisätään yksi, 
-    jotta saadaan kerroin alkuperäiselle arvolle.
+    Sovitekäyrien kaavat on otettu excel-taulukoista.
     '''
     option_lihasvoima = st.selectbox(
-        "LihasVOIMAharjoittelumuoto",
+        "Lihasvoimaharjoittelumuoto",
         ("Low load", "Medium load", "High load"),
         index=None,
         placeholder="Valitse tästä",
@@ -173,12 +165,12 @@ if selected_row is not None:
                 uusi_vo2max = kaavat.hiit_training(i) * selected_row['vo2max']
                 list_kestavyys.append(round(uusi_vo2max,1))
             st.write(option_kestavyys)
-        if option_kestavyys=="Matala 2":
+        if option_kestavyys=="Matala 2x":
             st.write(option_kestavyys)
             for i in viikot:
                 uusi_vo2max = kaavat.low_impact_two_per_week(i) * selected_row['vo2max']
                 list_kestavyys.append(round(uusi_vo2max,1))
-        if option_kestavyys=="Matala 3":
+        if option_kestavyys=="Matala 3x":
             st.write(option_kestavyys)
             for i in viikot:
                 uusi_vo2max = kaavat.low_impact_three_per_week(i) * selected_row['vo2max']
@@ -213,7 +205,7 @@ if selected_row is not None:
 
 #
 #
-    list_paino, list_bmi, list_rasvaprosentti, list_lihasmassa, list_rasvamassa, list_rasvatonmassa, list_etp= keho.kehonkoostumus(selected_row, etp, lihasvoimaharjoitusmuoto=option_lihasmassa)
+    list_paino, list_bmi, list_rasvaprosentti, list_lihasmassa, list_rasvamassa, list_rasvatonmassa, list_etp= keho.kehonkoostumus(selected_row, etp, lihasvoimaharjoitusmuoto=option_lihasvoima)
 
     data_list = [('Paino (kg)', list_paino, 'Kilogrammat'),
                 ('BMI', list_bmi, 'kg/m²'),
@@ -267,6 +259,7 @@ if selected_row is not None:
 
 st.divider()
 st.title("Generoidun datan piirteiden riippuvuudet")
+st.write("**HUOM!** Datan generoinnissa on vielä muutoksia tulossa sykkeeseen testin lopussa sekä lihasvoiman generointiin. Muutokset päivitetään alla olevaan kuvaan.")
 
 st.image(image='./images/data-gen-kaavio-selitys.png')
 

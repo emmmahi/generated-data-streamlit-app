@@ -33,6 +33,7 @@ def low_impact_two_per_week(x: int):
 #  lihasmassan kaavat (2 eri tilannetta harjoitustyypin mukaan
 def muscle_mass_blue_orig(x: int):
     """
+    Hypertrofinen/lihasmassaa kasvattava
     x: viikkojen määrä
     return: kasvun määrä prosentteina
     Harjoittelumuoto: hypertrofinen??? kaksi kertaa viikossa
@@ -44,6 +45,7 @@ def muscle_mass_blue_orig(x: int):
     
 def muscle_mass_orange_orig(x: int):
     """
+    Kestovoimaa kasvattava
     x: viikkojen määrä
     return: kasvun määrä prosentteina
     Harjoittelumuoto: kestovoima??? kaksi kertaa viikossa
@@ -60,6 +62,9 @@ def muscle_strength_high_load_orig(x):
     return round(result,2)
     
 def muscle_strength_medium_load_orig(x):
+    """
+    
+    """
     result = -0.000589138923545647* x**2 + 0.027224973648555 * x + 0.000527739726876137
     result = result +1
     return round(result,2)
