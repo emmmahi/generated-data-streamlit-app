@@ -49,7 +49,7 @@ Avaa ympäristö localhostissa:
 * riippuvuudet perusteltu notebookissa
 * jokaisella ajokerralla uusia satunnaislukuja (**EI** `np.random.seed()`- käytössä)
 
-![](./images/data-gen-kaavio.png)  
+![](./images/data-gen-kaavio2.png)  
 *Piirteiden riippuvuudet nuolilla merkittynä.*
 
 **kaavat-testi.ipynb**

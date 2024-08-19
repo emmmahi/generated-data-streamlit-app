@@ -261,5 +261,5 @@ st.divider()
 st.title("Generoidun datan piirteiden riippuvuudet")
 st.write("**HUOM!** Datan generoinnissa on vielä muutoksia tulossa sykkeeseen testin lopussa sekä lihasvoiman generointiin. Muutokset päivitetään alla olevaan kuvaan.")
 
-st.image(image='./images/data-gen-kaavio-selitys.png')
+st.image(image='./images/data-gen-kaavio2.drawio.png')
 
