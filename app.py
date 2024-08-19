@@ -35,7 +35,7 @@ st.write("Voit järjestää taulukkoa uudelleen valitsemalla halutun ominaisuude
 @st.cache_data   #decorator to cache the the dataset loading for better performance
 def get_dataset():
     #data = pd.read_csv('data/07-24-data.csv')
-    data = pd.read_csv('data/08-08-streamlit-data.csv')
+    data = pd.read_csv('data/08-19-streamlit-data.csv')
     return data
 
 data=get_dataset()
@@ -180,20 +180,20 @@ if selected_row is not None:
 
 
 ###### EI TOIMI ##########
-    list_lihasvoima = [selected_row['kyykyt/60s']]
+    list_lihasvoima = [selected_row['Maksimivoima (kg)']]
     if option_lihasvoima is not None:
         if option_lihasvoima == "Low load":
             for i in viikot:
-                uusi_toistomaara = kaavat.muscle_strength_low_load_orig(i)* selected_row['kyykyt/60s']
+                uusi_toistomaara = kaavat.muscle_strength_low_load_orig(i)* selected_row['Maksimivoima (kg)']
                 list_lihasvoima.append(round(uusi_toistomaara))
         elif option_lihasvoima == "Medium load":
             for i in viikot:
-                uusi_toistomaara = kaavat.muscle_strength_medium_load_orig(i) * selected_row['kyykyt/60s']
+                uusi_toistomaara = kaavat.muscle_strength_medium_load_orig(i) * selected_row['Maksimivoima (kg)']
                 list_lihasvoima.append(round(uusi_toistomaara))
                 #st.write("toistot medium", uusi_toistomaara)           
         elif option_lihasvoima == "High load":
             for i in viikot:
-                uusi_toistomaara = kaavat.muscle_strength_high_load_orig(i) * selected_row['kyykyt/60s']
+                uusi_toistomaara = kaavat.muscle_strength_high_load_orig(i) * selected_row['Maksimivoima (kg)']
                 list_lihasvoima.append(round(uusi_toistomaara))
 
     else:
@@ -212,7 +212,7 @@ if selected_row is not None:
                 ('Rasvaprosentti', list_rasvaprosentti, '%'),
                 ('Lihasmassa (kg)', list_lihasmassa, 'Kilogrammat'),
                 ('Hapenottokyky (ml/kg/min)', list_kestavyys, 'ml/kg/min'),
-                ('Lihasvoima (toistotesti)', list_lihasvoima, 'Toistot/min'),
+                ('Maksimivoima (kg)', list_lihasvoima, 'Kilogrammat'),
                 ('Rasvaton massa', list_rasvatonmassa, 'Kilogrammat'),
                 ('Rasvamassa', list_rasvamassa, 'Kilogrammat'),
                 ('Energiatasapaino', list_etp, 'kcal')]
