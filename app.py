@@ -259,7 +259,7 @@ if selected_row is not None:
 
 st.divider()
 st.title("Generoidun datan piirteiden riippuvuudet")
-st.write("**HUOM!** Datan generoinnissa on vielä muutoksia tulossa sykkeeseen testin lopussa sekä lihasvoiman generointiin. Muutokset päivitetään alla olevaan kuvaan.")
+st.write("**HUOM!** Datan generoinnissa on vielä muutoksia tulossa sykkeeseen testin lopussa sekä lihasvoiman generointiin. Muutokset päivitetään 22.08.24.")
 
 st.image(image='./images/data-gen-kaavio2.drawio.png')
 
