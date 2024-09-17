@@ -35,7 +35,8 @@ st.write("Voit järjestää taulukkoa uudelleen valitsemalla halutun ominaisuude
 @st.cache_data   #decorator to cache the the dataset loading for better performance
 def get_dataset():
     #data = pd.read_csv('data/07-24-data.csv')
-    data = pd.read_csv('data/08-19-streamlit-data.csv')
+    #data = pd.read_csv('data/08-19-streamlit-data.csv')
+    data = pd.read_csv('data/data-csc-kamk-id.csv')
     return data
 
 data=get_dataset()
@@ -218,7 +219,7 @@ if selected_row is not None:
                 ('Energiatasapaino', list_etp, 'kcal')]
 
     #x_list = ['Kilogrammat', 'kg/m²', '%', 'Kilogrammat', 'ml/kg/min', 'Toistot/min', 'Kilogrammat', 'Kilogrammat']
-
+    st.write('Valittu rivi (id):', selected_row['id'])
 
     if etp is not None:
         fig, axes = plt.subplots(3,3, figsize=(18, 8))
@@ -259,7 +260,11 @@ if selected_row is not None:
 
 st.divider()
 st.title("Generoidun datan piirteiden riippuvuudet")
-st.write("**HUOM!** Datan generoinnissa on vielä muutoksia tulossa sykkeeseen testin lopussa sekä lihasvoiman generointiin. Muutokset päivitetään 22.08.24.")
+#st.write("**HUOM!** Datan generoinnissa on vielä muutoksia tulossa sykkeeseen testin lopussa sekä lihasvoiman generointiin. Muutokset päivitetään alla olevaan kuvaan.")
 
 st.image(image='./images/data-gen-kaavio2.drawio.png')
 
+
+st.divider()
+st.title("Koodi kaavioiden taustalla")
+st.image(image='./images/koodi-streamlitin-taustalla.png')

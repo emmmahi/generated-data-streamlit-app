@@ -34,7 +34,7 @@ def kehonkoostumus(row, energiatp=0, lihasvoimaharjoitusmuoto = None):
     pituus = row['Pituus (cm)']
     paino = row['Paino (kg)']
     bmi = row['BMI']
-    pav_vrk = row['Vuorokausiaineenvaihdunta']
+    pav_vrk = row['vrk_pav_akt']
     rasvaprosentti = row['Rasvaprosentti']
     rasvamassa = row['Rasvamassa (kg)']
     rasvatonmassa = row['Rasvaton massa (kg)']
