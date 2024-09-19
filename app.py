@@ -213,7 +213,7 @@ if selected_row is not None:
                 ('Rasvaprosentti', list_rasvaprosentti, '%'),
                 ('Lihasmassa (kg)', list_lihasmassa, 'Kilogrammat'),
                 ('Hapenottokyky (ml/kg/min)', list_kestavyys, 'ml/kg/min'),
-                ('Maksimivoima (kg)', list_lihasvoima, 'Kilogrammat'),
+                ('Yhden toiston maksimivoima (kg) - Leg Press', list_lihasvoima, 'Kilogrammat'),
                 ('Rasvaton massa', list_rasvatonmassa, 'Kilogrammat'),
                 ('Rasvamassa', list_rasvamassa, 'Kilogrammat'),
                 ('Energiatasapaino', list_etp, 'kcal')]
